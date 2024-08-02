@@ -1,0 +1,113 @@
+@import "../../index.scss";
+
+.Quote {
+  @include flex(center, center, column);
+  min-height: 70vh;
+  color: $darkGray;
+
+  .leftIconContainer {
+    @include flex(center, center);
+    width: 100%;
+    max-width: 600px;
+    opacity: 0;
+    position: relative;
+    height: 120px;
+
+    svg {
+      transform: rotate(180deg);
+      height: 80px;
+      width: 80px;
+      position: absolute;
+      right: 100%;
+    }
+  }
+
+  .textContainer {
+    @include flex (center, center);
+    max-width: 600px;
+    line-height: $lineHeight;
+    font-size: 1.3em;
+    text-align: center;
+    position: relative;
+
+    p {
+      opacity: 0;
+    }
+  }
+
+  .rightIconContainer {
+    @extend .leftIconContainer;
+
+    svg {
+      transform: rotate(0);
+      right: auto;
+      left: 100%;
+    }
+  }
+}
+
+.leftIconAnimation {
+  animation: leftIconAnimation 2s forwards;
+}
+.rightIconAnimation {
+  animation: rightIconAnimation 2s forwards;
+}
+.textAnimation {
+  animation: textAnimation 2s forwards;
+}
+
+@keyframes textAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes leftIconAnimation {
+  from {
+    transform: translateX(-150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes rightIconAnimation {
+  from {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .Quote {
+    padding: 30px 15px;
+
+    .leftIconContainer {
+      svg {
+        right: auto;
+        left: 0;
+      }
+    }
+    .rightIconContainer {
+      svg {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .Quote {
+    .textContainer {
+      font-size: 1.1em;
+    }
+  }
+}

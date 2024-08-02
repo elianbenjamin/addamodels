@@ -1,0 +1,143 @@
+@import "../../index.scss";
+
+.NavBar {
+  @include flex(space-between, center);
+  height: 65px;
+  width: 100%;
+  background-color: transparent;
+  z-index: 10;
+  padding: 10px;
+  padding-left: 35px;
+  position: fixed;
+  transition: background-color 0.3s;
+  user-select: none;
+
+  .buttons {
+    @include flex(flex-start, center);
+    list-style-type: none;
+    flex: 1;
+    gap: 40px;
+
+    li {
+      @include flex(center, center);
+      position: relative;
+      color: aliceblue;
+      z-index: 0;
+      overflow: hidden;
+      cursor: pointer;
+      transition: color 0.3s;
+      border-radius: 5px;
+      height: 25px;
+      padding: 5px;
+
+      a {
+        @include flex(center, center);
+        text-decoration: none;
+        color: inherit;
+      }
+
+      &:hover {
+        color: black;
+      }
+      &::after {
+        content: "";
+        background-color: $white;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: transform 0.3s;
+        transform: translateX(-101%);
+      }
+      &:hover::after {
+        transform: translateX(0);
+      }
+    }
+    .active {
+      background-color: $white;
+      color: black;
+    }
+  }
+
+  .buttonsResponsive {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 40px;
+    position: absolute;
+    top: 99%;
+    left: -210px;
+    margin: 0;
+    align-items: flex-start;
+    padding: 20px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+
+  .buttonsResponsive_open {
+    transform: translateX(210px);
+  }
+
+  svg {
+    height: 35px;
+    width: 35px;
+    color: aliceblue;
+    cursor: pointer;
+  }
+
+  .titleContainer {
+    @include flex(center, center);
+    gap: 20px;
+    color: white;
+    cursor: pointer;
+
+    h3 {
+      font-size: 1.3rem;
+      text-align: end;
+    }
+
+    .logoContainer {
+      @include flex(center, center);
+      background-color: $white;
+      height: 50px;
+      width: 50px;
+      overflow: hidden;
+      border-radius: 5px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        transform: scale(2);
+      }
+    }
+  }
+}
+.navBar_active {
+  background-color: $darkGray;
+  box-shadow: $boxShadow;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $darkGrayHover;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .NavBar {
+    padding-left: 15px;
+
+    .titleContainer {
+      gap: 5px;
+    }
+
+    .buttons {
+      gap: 13px;
+    }
+    .buttonsResponsive {
+      gap: 40px;
+    }
+  }
+}

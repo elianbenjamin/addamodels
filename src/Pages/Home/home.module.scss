@@ -1,0 +1,66 @@
+@import "../../index.scss";
+
+.Home {
+  @include flex(center, stretch, column);
+  width: 100%;
+  top: 0;
+  z-index: -1;
+  background-color: $white;
+
+  .videoContainer {
+    @include flex(center, center);
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+
+    video {
+      object-fit: cover;
+      min-height: 100%;
+      min-width: 100%;
+      z-index: -1;
+    }
+
+    svg {
+      position: absolute;
+      color: white;
+      height: 50px;
+      width: 50px;
+      bottom: 10%;
+      animation: arrowDownAnimation 8s infinite;
+      animation-delay: 5s;
+      cursor: pointer;
+
+      &:hover {
+        animation: none;
+      }
+    }
+  }
+  .whatsapp-container {
+    position: fixed;
+    height: 50px;
+    width: 50px;
+    bottom: 5%;
+    right: 3%;
+    z-index: 100;
+
+    svg {
+      height: 100%;
+      width: 100%;
+      color: $darkGray;
+    }
+  }
+}
+
+@keyframes arrowDownAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  8% {
+    transform: translateY(-30px);
+  }
+  12% {
+    transform: translateY(0);
+  }
+}
